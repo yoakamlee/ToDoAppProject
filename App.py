@@ -18,10 +18,18 @@ while True:
                 print(f"{index}: {item}")
 
         case "edit":
-            num = int(input("Enter List Number: "))
+            num = int(input("Enter Item Number: "))
             num = num - 1
             print(f"Todo chosen: {todos[num]}")
             todos[num] = input("Enter Todo: ").title()
+
+        case "complete":
+            num = int(input("Enter Item Number: "))
+            num = num - 1
+            print(f"Item selected is: {todos[num]}")
+            todos.pop(num)
+            for item in todos:
+                print(item)
 
         case "exit":
             break
