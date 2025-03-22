@@ -17,6 +17,12 @@ while True:
                 index = index + 1
                 print(f"{index}: {item}")
 
+        case "edit":
+            num = int(input("Enter List Number: "))
+            num = num - 1
+            print(f"Todo chosen: {todos[num]}")
+            todos[num] = input("Enter Todo: ").title()
+
         case "exit":
             break
 
