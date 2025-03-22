@@ -13,7 +13,9 @@ while True:
             todos.append(new_todo)
 
         case "show":
-            print(todos)
+            for index,item in enumerate(todos):
+                index = index + 1
+                print(f"{index}: {item}")
 
         case "exit":
             break
