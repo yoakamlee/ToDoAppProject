@@ -21,12 +21,12 @@ while True:
 
             file = open("todos.txt", "r")
             todos = file.readlines()
+            file.close()
 
             for index,item in enumerate(todos):
                 index = index + 1
                 print(f"{index}: {item}")
 
-            file.close()
         case "edit":
             num = int(input("Enter Item Number: "))
             num = num - 1
