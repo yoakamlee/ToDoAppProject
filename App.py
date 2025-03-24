@@ -1,6 +1,3 @@
-todos = ["Monster hunter", "Tekken", "Path Of Exile"]
-
-todos.sort()
 
 while True:
     user_input = input("Select an option: add, show, edit, complete, or exit: ")
@@ -8,15 +5,28 @@ while True:
 
     match user_input:
         case "add":
-            new_todo = input("Add a todo: ").title()
+            new_todo = input("Add a todo: ").title() + "\n"
             print(f"New Todo added: {new_todo}")
+
+            file = open("todos.txt", "r")
+            todos = file.readlines()
+            file.close()
+
             todos.append(new_todo)
+            file = open("todos.txt", "w")
+            file.writelines(todos)
+            file.close()
 
         case "show":
+
+            file = open("todos.txt", "r")
+            todos = file.readlines()
+
             for index,item in enumerate(todos):
                 index = index + 1
                 print(f"{index}: {item}")
 
+            file.close()
         case "edit":
             num = int(input("Enter Item Number: "))
             num = num - 1
