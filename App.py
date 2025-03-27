@@ -21,9 +21,9 @@ while True:
             with open("todos.txt", "r") as file:
                 todos = file.readlines()
 
-            edited_todos = [item.strip("\n").title() for item in todos]
+            striped_todos = [item.strip("\n").title() for item in todos]
 
-            for index,item in enumerate(edited_todos):
+            for index,item in enumerate(striped_todos):
                 index = index + 1
                 print(f"{index}: {item}")
 
