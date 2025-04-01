@@ -26,34 +26,52 @@ while True:
             print(f"{index}: {item}")
 
     elif user_input.startswith("edit"):
-        num = int(user_input[5:])
-        num = num - 1
+        try:
+            num = int(user_input[5:])
+            num = num - 1
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
 
-        print(f"Todo chosen: {todos[num].strip("\n")}")
-        todos[num] = input("Enter Todo: ").title() + "\n"
+            print(f"Todo chosen: {todos[num].strip("\n")}")
+            todos[num] = input("Enter Todo: ").title() + "\n"
 
-        with open("todos.txt", "w") as file:
-            file.writelines(todos)
+            with open("todos.txt", "w") as file:
+                file.writelines(todos)
+
+        except ValueError:
+            print("Unknown Command! Invalid Value")
+            continue
+
+        except IndexError:
+            print("Unknown Command! not within range of the current list!")
+            continue
 
     elif user_input.startswith("complete"):
-        num = int(user_input[9:])
-        num = num - 1
+        try:
+            num = int(user_input[9:])
+            num = num - 1
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+            with open("todos.txt", "r") as file:
+                todos = file.readlines()
 
-        print(f"Item selected is: {todos[num]}")
-        todos.pop(num)
+            print(f"Item selected is: {todos[num]}")
+            todos.pop(num)
 
-        with open("todos.txt","w") as file:
-            file.writelines(todos)
+            with open("todos.txt","w") as file:
+                file.writelines(todos)
 
-        for item in todos:
-            item = item.title().strip("\n")
-            print(f"{item}")
+            for item in todos:
+                item = item.title().strip("\n")
+                print(f"{item}")
+
+        except IndexError:
+            print("Unknown Command! not within range of the current list!")
+            continue
+
+        except ValueError:
+            print("Unknown Command! not within range of the current list!")
+            continue
 
     elif user_input.startswith('exit'):
         break
