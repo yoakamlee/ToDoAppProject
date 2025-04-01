@@ -2,19 +2,19 @@ while True:
     user_input = input("Select an option: add, show, edit, complete, or exit: ")
     user_input = user_input.strip().lower()
 
-    if "add" in user_input:
+    if user_input.startswith("add"):
         added_todo = user_input[4:]
         print(f"New Todo added: {added_todo}")
 
         with open("todos.txt", "r") as file:
             todos = file.readlines()
 
-        todos.append(added_todo)
+        todos.append(added_todo + "\n")
 
         with open("todos.txt", "w") as file:
             file.writelines(todos)
 
-    elif "show" in user_input:
+    elif user_input.startswith("show"):
 
         with open("todos.txt", "r") as file:
             todos = file.readlines()
@@ -25,7 +25,7 @@ while True:
             index = index + 1
             print(f"{index}: {item}")
 
-    elif "edit" in user_input:
+    elif user_input.startswith("edit"):
         num = int(user_input[5:])
         num = num - 1
 
@@ -38,7 +38,7 @@ while True:
         with open("todos.txt", "w") as file:
             file.writelines(todos)
 
-    elif "complete" in user_input:
+    elif user_input.startswith("complete"):
         num = int(user_input[9:])
         num = num - 1
 
@@ -55,7 +55,7 @@ while True:
             item = item.title().strip("\n")
             print(f"{item}")
 
-    elif "exit" in user_input:
+    elif user_input.startswith('exit'):
         break
 
     else:
