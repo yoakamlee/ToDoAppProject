@@ -1,3 +1,9 @@
+def get_todos():
+    with open("todos.txt", "r") as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
+
+
 while True:
     user_input = input("Select an option: add, show, edit, complete, or exit: ")
     user_input = user_input.strip().lower()
@@ -6,8 +12,7 @@ while True:
         added_todo = user_input[4:]
         print(f"New Todo added: {added_todo}")
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         todos.append(added_todo + "\n")
 
@@ -16,8 +21,7 @@ while True:
 
     elif user_input.startswith("show"):
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         striped_todos = [item.strip("\n").title() for item in todos]
 
@@ -30,8 +34,7 @@ while True:
             num = int(user_input[5:])
             num = num - 1
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             print(f"Todo chosen: {todos[num].strip("\n")}")
             todos[num] = input("Enter Todo: ").title() + "\n"
@@ -52,8 +55,7 @@ while True:
             num = int(user_input[9:])
             num = num - 1
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             print(f"Item selected is: {todos[num]}")
             todos.pop(num)
