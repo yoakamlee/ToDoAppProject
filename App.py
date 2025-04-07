@@ -1,7 +1,12 @@
-def get_todos():
-    with open("todos.txt", "r") as file_local:
+def get_todos(filepath):
+    with open(filepath, "r") as file_local:
         todos_local = file_local.readlines()
     return todos_local
+
+
+def write_todos(filepath, todos_args):
+    with open(filepath, "w") as file_local:
+        file_local.writelines(todos_args)
 
 
 while True:
@@ -12,16 +17,15 @@ while True:
         added_todo = user_input[4:]
         print(f"New Todo added: {added_todo}")
 
-        todos = get_todos()
+        todos = get_todos("todos.txt")
 
         todos.append(added_todo + "\n")
 
-        with open("todos.txt", "w") as file:
-            file.writelines(todos)
+        write_todos("todos.txt", todos)
 
     elif user_input.startswith("show"):
 
-        todos = get_todos()
+        todos = get_todos("todos.txt")
 
         striped_todos = [item.strip("\n").title() for item in todos]
 
@@ -34,13 +38,12 @@ while True:
             num = int(user_input[5:])
             num = num - 1
 
-            todos = get_todos()
+            todos = get_todos("todos.txt")
 
             print(f"Todo chosen: {todos[num].strip("\n")}")
             todos[num] = input("Enter Todo: ").title() + "\n"
 
-            with open("todos.txt", "w") as file:
-                file.writelines(todos)
+            write_todos("todos.txt", todos)
 
         except ValueError:
             print("Unknown Command! Invalid Value")
@@ -55,13 +58,12 @@ while True:
             num = int(user_input[9:])
             num = num - 1
 
-            todos = get_todos()
+            todos = get_todos("todos.txt")
 
             print(f"Item selected is: {todos[num]}")
             todos.pop(num)
 
-            with open("todos.txt","w") as file:
-                file.writelines(todos)
+            write_todos("todos.txt", todos)
 
             for item in todos:
                 item = item.title().strip("\n")
