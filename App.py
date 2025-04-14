@@ -1,4 +1,10 @@
 import TodoFunction
+import time
+
+
+time_now = time.strftime("%b %d %Y, %H:%M:%S")
+
+print(time_now)
 
 while True:
     user_input = input("Select an option: add, show, edit, complete, or exit: ")
